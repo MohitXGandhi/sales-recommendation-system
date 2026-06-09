@@ -13,10 +13,10 @@ product = df.groupby("Product").agg({
 
 # Normalize + Score
 product["Score"] = (
-    0.35 * (product["Net_Revenue"] / product["Net_Revenue"].max()) +
-    0.30 * (product["Units_Sold"] / product["Units_Sold"].max()) +
+    0.35 * (product["Net_Revenue"] / max(product["Net_Revenue"].max(), 1e-9)) +
+    0.30 * (product["Units_Sold"] / max(product["Units_Sold"].max(), 1e-9)) +
     0.20 * (product["Customer_Rating"] / 5) +
-    0.15 * (1 - product["Returns"] / product["Returns"].max())
+    0.15 * (1 - product["Returns"] / max(product["Returns"].max(), 1e-9))
 )
 
 product = product.sort_values(by="Score", ascending=False)

@@ -1,36 +1,33 @@
-# Product Recommendation System
+# Sales Recommendation Engine
 
-A machine learning based recommendation system designed to suggest relevant products using customer behavior and sales data analysis.
+A sales recommendation engine that uses data-driven business rules to suggest relevant products to customers."
 
 ---
 
 ## Project Overview
 
-This project analyzes user-product interaction data and generates personalized product recommendations using similarity-based machine learning techniques. The system is designed to improve customer engagement and assist businesses in identifying relevant product suggestions.
+This project analyzes user-product interaction data and generates personalized product recommendations using a weighted scoring formula based on revenue, units sold, customer ratings, and return rates. The system is designed to improve customer engagement and assist businesses in identifying relevant product suggestions.
 
 ---
 
 ## Features
 
-- Product recommendation generation
-- Data preprocessing and cleaning
-- Similarity-based recommendation logic
-- User-product interaction analysis
-- Machine learning based recommendation workflow
-- Scalable recommendation architecture
+- Synthetic sales data generation with seasonality
+- Data preprocessing and statistical analysis
+- Weighted score-based recommendation logic
+- Automated pipeline execution
+- Data visualization for sales trends
 
 ---
 
 ## Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| Python | Core programming language |
-| Pandas | Data preprocessing and analysis |
-| NumPy | Numerical computations |
-| Scikit-learn | Machine learning algorithms |
-| Matplotlib | Data visualization |
-| Jupyter Notebook | Development environment |
+| Technology | Purpose                         |
+| ---------- | ------------------------------- |
+| Python     | Core programming language       |
+| Pandas     | Data preprocessing and analysis |
+| NumPy      | Numerical computations          |
+| Matplotlib | Data visualization              |
 
 ---
 
@@ -40,11 +37,21 @@ This project analyzes user-product interaction data and generates personalized p
 sales-recommendation-system/
 │
 ├── data/
-├── models/
-├── notebooks/
-├── src/
-├── images/
-├── requirements.txt
+│   ├── generate_data.py          # Data generation script
+│   └── monthly_sales_data.csv    # Generated synthetic dataset
+├── outputs/
+│   ├── category_statistics.csv   # Aggregated statistics
+│   ├── monthly_trends.csv
+│   ├── product_statistics.csv
+│   ├── ranked_products.csv       # Final recommendations
+│   ├── revenue_trend.png
+│   └── top_products.png
+├── data_visualization.py         # Generates plots
+├── descriptive_statistics.py     # Computes base statistics
+├── gui_app.py                    # Placeholder for GUI
+├── main.py                       # Pipeline orchestrator
+├── recommendation_system.py      # Core ranking logic
+├── requirements.txt              # Dependencies
 └── README.md
 ```
 
@@ -63,7 +70,7 @@ cd sales-recommendation-system
 
 ```bash
 python -m venv venv
-venv\Scripts\activate
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
 ```
 
 ### 3. Install dependencies
@@ -76,41 +83,36 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the recommendation system:
+Run the full data generation, analysis, and recommendation pipeline:
 
 ```bash
-python app.py
+python main.py
 ```
+
+Check the `outputs/` directory for the resulting statistics, visualizations, and the final `ranked_products.csv`.
 
 ---
 
 ## How It Works
 
-1. Sales and customer interaction data are collected and preprocessed
-2. User-product relationships are analyzed
-3. Similarity scores are calculated using machine learning techniques
-4. Recommended products are generated based on similarity metrics
-5. Final recommendations are displayed to the user
-
----
-
-## Demo
-
-Add project screenshots inside the `images/` folder and display them here.
-
-```md
-![Demo](images/demo.png)
-```
+1. **Data Generation**: `generate_data.py` creates a synthetic dataset of product sales, incorporating seasonal trends, returns, and discounts.
+2. **Descriptive Statistics**: Key metrics (revenue, units sold) are aggregated by product, category, and month.
+3. **Data Visualization**: Matplotlib is used to plot monthly revenue trends and top-performing products.
+4. **Recommendation Logic**: Products are ranked based on a composite score:
+   - 35% Net Revenue
+   - 30% Units Sold
+   - 20% Customer Rating
+   - 15% Return Rate (Inversely proportional)
+5. **Output**: The final ranked list is exported to `outputs/ranked_products.csv`.
 
 ---
 
 ## Future Improvements
 
+- Machine Learning integration (Collaborative filtering)
 - Real-time recommendation generation
-- Web-based deployment
-- Deep learning recommendation models
+- Web-based deployment or GUI implementation
 - User authentication system
-- Cloud integration
 - Interactive dashboard visualization
 
 ---
@@ -118,4 +120,4 @@ Add project screenshots inside the `images/` folder and display them here.
 ## Author
 
 **Mohit Gandhi**  
-BTech CSE (Data Science & AIML)
+BTech CSE (Data Science & AI/ML)
