@@ -24,9 +24,6 @@ var/
 wheels/
 share/python-wheels/
 
-# Outputs and Generated Data
-outputs/
-data/*.csv
 
 # IDEs
 .idea/
