@@ -4,11 +4,15 @@ import os
 
 np.random.seed(42)
 
-products = ["Laptop", "Smartphone", "Tablet", "Camera", "Headphones",
-            "Smartwatch", "Speaker", "Monitor", "Keyboard", "Mouse",
-            "Printer", "Router", "USB Hub", "Webcam", "Microphone"]
+product_category_map = {
+    "Laptop": "Computers", "Smartphone": "Mobile", "Tablet": "Mobile",
+    "Camera": "Accessories", "Headphones": "Audio", "Smartwatch": "Mobile",
+    "Speaker": "Audio", "Monitor": "Computers", "Keyboard": "Accessories",
+    "Mouse": "Accessories", "Printer": "Computers", "Router": "Accessories",
+    "USB Hub": "Accessories", "Webcam": "Accessories", "Microphone": "Audio"
+}
 
-categories = ["Computers", "Mobile", "Audio", "Accessories"]
+products = list(product_category_map.keys())
 
 months = pd.date_range(start="2023-01-01", periods=12, freq='ME')
 
@@ -16,7 +20,7 @@ data = []
 
 for month in months:
     for product in products:
-        category = np.random.choice(categories)
+        category = product_category_map[product]
 
         units = np.random.randint(50, 200)
 
@@ -27,6 +31,8 @@ for month in months:
             units *= 1.2
         elif month.month in [1, 2]:
             units *= 0.8
+            
+        units = int(units)
 
         price = np.random.uniform(1000, 80000)
         revenue = units * price
@@ -49,4 +55,4 @@ df = pd.DataFrame(data, columns=[
 os.makedirs("data", exist_ok=True)
 df.to_csv("data/monthly_sales_data.csv", index=False)
 
-print("✅ Data generated!")
+print(" Data generated!")

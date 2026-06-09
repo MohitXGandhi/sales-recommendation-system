@@ -28,4 +28,4 @@ monthly = df.groupby("Month").agg({
 
 monthly.to_csv("outputs/monthly_trends.csv", index=False)
 
-print("✅ Statistics done!")
+print(" Statistics done!")

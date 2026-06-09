@@ -1,10 +1,11 @@
-import os
+import subprocess
+import sys
 
-print("🚀 Running Full Pipeline...\n")
+print(" Running Full Pipeline...\n")
 
-os.system("python data/generate_data.py")
-os.system("python descriptive_statistics.py")
-os.system("python data_visualization.py")
-os.system("python recommendation_system.py")
+subprocess.run([sys.executable, "data/generate_data.py"], check=True)
+subprocess.run([sys.executable, "descriptive_statistics.py"], check=True)
+subprocess.run([sys.executable, "data_visualization.py"], check=True)
+subprocess.run([sys.executable, "recommendation_system.py"], check=True)
 
-print("\n✅ PROJECT COMPLETED SUCCESSFULLY!")
+print("\n PROJECT COMPLETED SUCCESSFULLY!")
